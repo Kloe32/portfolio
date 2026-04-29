@@ -1,0 +1,28 @@
+<svg width="960" height="960" viewBox="0 0 960 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradA" x1="120" y1="120" x2="780" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+    <linearGradient id="gradB" x1="180" y1="140" x2="760" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A78BFA"/>
+      <stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+    <filter id="blurSoft" x="0" y="0" width="960" height="960" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#blurSoft)" opacity="0.45">
+    <circle cx="300" cy="250" r="110" fill="#38BDF8"/>
+    <circle cx="700" cy="680" r="120" fill="#818CF8"/>
+  </g>
+
+  <path d="M468.766 94.1833C534.529 80.2861 602.685 99.5374 657.29 147.706L781.915 257.676C836.52 305.845 871.841 372.995 880.856 445.997L901.192 610.595C910.207 683.597 871.842 756.709 801.046 807.156L662.664 905.747C591.869 956.193 500.807 971.232 420.267 947.055L261.49 899.399C180.95 875.222 122.489 819.977 103.84 747.734L67.2998 606.184C48.6511 533.941 60.4415 455.978 100.707 393.286L180.387 269.241C220.652 206.55 286.066 161.471 359.88 145.88L468.766 94.1833Z" fill="url(#gradA)"/>
+
+  <path opacity="0.85" d="M484.102 196.839C532.572 186.593 582.815 200.786 623.084 236.307L709.888 312.92C750.156 348.442 776.21 397.956 782.856 451.788L797.026 566.503C803.671 620.336 775.394 674.244 723.211 711.43L626.849 780.081C574.666 817.267 507.531 828.349 448.156 810.524L339.412 777.882C280.038 760.057 236.929 719.316 223.181 666.062L199.368 573.8C185.62 520.547 194.311 463.079 223.43 417.741L277.936 332.893C307.055 287.555 354.359 254.96 407.731 243.689L484.102 196.839Z" fill="url(#gradB)"/>
+
+  <circle cx="350" cy="390" r="22" fill="#E0F2FE"/>
+  <circle cx="610" cy="535" r="18" fill="#EDE9FE"/>
+  <circle cx="540" cy="300" r="12" fill="#DBEAFE"/>
+</svg>

@@ -3,8 +3,10 @@ import { Geist, Geist_Mono, Figtree } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/sections/Navbar";
 import { cn } from "@/lib/utils";
+import { Particles } from "@/components/ui/particles";
+import Cursor from "@/components/ui/cursor";
 
-const figtree = Figtree({subsets:['latin'],variable:'--font-sans'});
+const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,10 +32,23 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", figtree.variable)}
+      className={cn(
+        "h-full",
+        "antialiased",
+        geistSans.variable,
+        geistMono.variable,
+        "font-sans",
+        figtree.variable,
+      )}
     >
       <body className="min-h-full flex flex-col">
+        <Particles
+          className="fixed inset-0 -z-10"
+          quantity={200}
+          color="#51A2FF"
+        />
         <Navbar />
+        <Cursor />
         {children}
       </body>
     </html>
