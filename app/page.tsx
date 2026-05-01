@@ -14,7 +14,6 @@ export default function Home() {
         <div className="absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-indigo-500/15 blur-3xl" />
       </div>
       <Hero />
-      <About />
       <Projects />
       <Experience />
       <Skills />

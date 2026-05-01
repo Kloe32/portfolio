@@ -15,6 +15,18 @@ export default function Cursor() {
     const ring = ringRef.current;
     if (!dot || !ring) return;
 
+    // Don't enable custom cursor on touch devices
+    if (typeof window !== "undefined" && "ontouchstart" in window) return;
+
+    // hide native cursor while custom cursor is active
+    const previousCursor = document.documentElement.style.cursor;
+    document.documentElement.style.cursor = "none";
+
+    const baseDotColor = "#51a2ff";
+    const baseRingColor = "rgba(81,162,255,0.6)";
+    const hoverDotColor = "#FF0080";
+    const hoverRingColor = "rgba(255,0,128,0.5)";
+
     const onMouseMove = (e: MouseEvent) => {
       mx.current = e.clientX;
       my.current = e.clientY;
@@ -28,31 +40,45 @@ export default function Cursor() {
       ry.current += (my.current - ry.current) * 0.1;
       ring.style.left = rx.current + "px";
       ring.style.top = ry.current + "px";
+
+      // Check if cursor is over an interactive element
+      // Use a small offset to avoid the cursor elements blocking the check
+      const elementUnderCursor = document.elementFromPoint(
+        mx.current + 10,
+        my.current + 10,
+      );
+      const isOverInteractive = elementUnderCursor?.closest?.(
+        "a, button, [role=button]",
+      );
+
+      if (isOverInteractive) {
+        // Enlarge cursor over interactive elements
+        dot.style.width = "0.75rem";
+        dot.style.height = "0.75rem";
+        dot.style.backgroundColor = hoverDotColor;
+        ring.style.width = "3.25rem";
+        ring.style.height = "3.25rem";
+        ring.style.borderColor = hoverRingColor;
+      } else {
+        // Shrink cursor elsewhere
+        dot.style.width = "0.5rem";
+        dot.style.height = "0.5rem";
+        dot.style.backgroundColor = baseDotColor;
+        ring.style.width = "2.25rem";
+        ring.style.height = "2.25rem";
+        ring.style.borderColor = baseRingColor;
+      }
+
       rafId = requestAnimationFrame(animate);
     };
 
-    const onEnter = () => {
-      dot.classList.add("!w-3", "!h-3", "!bg-[#FF0080]");
-      ring.classList.add("!w-13", "!h-13", "!border-[#FF0080]/50");
-    };
-    const onLeave = () => {
-      dot.classList.remove("!w-3", "!h-3", "!bg-[#FF0080]");
-      ring.classList.remove("!w-13", "!h-13", "!border-[#FF0080]/50");
-    };
-
-    const addHoverListeners = () => {
-      document.querySelectorAll("a, button").forEach((el) => {
-        el.addEventListener("mouseenter", onEnter);
-        el.addEventListener("mouseleave", onLeave);
-      });
-    };
-
     window.addEventListener("mousemove", onMouseMove);
-    addHoverListeners();
     rafId = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
+      // restore native cursor
+      document.documentElement.style.cursor = previousCursor || "";
       cancelAnimationFrame(rafId);
     };
   }, []);

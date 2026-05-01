@@ -30,6 +30,7 @@ export default function About() {
                 alt="Profile photo"
                 width={224}
                 height={224}
+                unoptimized
                 className="object-cover w-full h-full"
               />
             </div>
