@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ArrowUpRight, Download } from "lucide-react";
 import { AuroraText } from "@/components/ui/aurora-text";
 import { TypingAnimation } from "../ui/typing-animation";
 import { ShimmerButton } from "../ui/shimmer-button";
@@ -48,7 +49,7 @@ export default function Hero() {
             </p>
 
             <h1 className="mt-5 text-5xl font-black leading-[0.95] text-white sm:text-6xl lg:text-8xl">
-              <AuroraText colors={["#7928CA", "#0070F3", "#38bdf8"]}>
+              <AuroraText colors={["rgb(121,40,202)", "rgb(0,112,243)", "rgb(56,189,248)"]}>
                 SAI SAING WAN
               </AuroraText>
             </h1>
@@ -71,16 +72,28 @@ export default function Hero() {
 
             <div className="mt-10 flex flex-wrap justify-center gap-3 lg:justify-start">
               <ShimmerButton
-                href="#projects"
+                href="/projects"
                 className="shadow-2xl"
-                shimmerColor="#51a2ff"
+                shimmerColor="rgb(81,162,255)"
                 shimmerSize="0.1em"
                 background="rgba(0,11,60)"
               >
-                <span className="text-center text-sm leading-none font-medium whitespace-pre-wrap text-white lg:text-lg dark:from-white dark:to-slate-900/10">
+                <span className="flex items-center gap-2 text-center text-sm leading-none font-medium whitespace-pre-wrap text-white lg:text-lg dark:from-white dark:to-slate-900/10">
                   View My Works
+                  <ArrowUpRight className="h-4 w-4" />
                 </span>
               </ShimmerButton>
+              <a
+                href="/resume.pdf"
+                download
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-cyan-400/40 bg-cyan-400/10 px-5 py-2.5 text-sm font-semibold text-cyan-100 shadow-[0_0_20px_rgba(56,189,248,0.18)] transition-all duration-300 hover:border-cyan-300/70 hover:bg-cyan-400/20 hover:text-white lg:text-base"
+              >
+                <span className="absolute inset-0 -z-10 bg-linear-to-r from-cyan-500/10 via-blue-500/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="flex items-center gap-2">
+                  Download Resume
+                  <Download className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
+                </span>
+              </a>
             </div>
           </div>
 
@@ -118,14 +131,13 @@ export default function Hero() {
               {techStacks.map((tech) => (
                 <div
                   key={tech.name}
-                  className="group relative flex items-center rounded-full border border-cyan-500/30 bg-[#0D1526] p-3 text-xs text-blue-100 shadow-[0_0_12px_rgba(81,162,255,0.2)] backdrop-blur-sm hover:gap-2"
+                  className="group relative flex items-center rounded-full border border-primary/30 bg-card p-3 text-xs text-foreground shadow-[0_0_12px_rgba(81,162,255,0.2)] backdrop-blur-sm hover:gap-2"
                 >
                   <StackIcon
                     name={tech.stack}
                     className={cn(
                       "size-8 rounded-full md:size-10",
-                      tech.dark &&
-                        "[filter:invert(1)_brightness(2)]",
+                      tech.dark && "filter-[invert(1)_brightness(2)]",
                     )}
                   />
                   <span className="max-w-0 overflow-hidden whitespace-nowrap text-[11px] tracking-[0.18em] text-blue-200/90 opacity-0 transition-all duration-200 group-hover:max-w-35 group-hover:opacity-100">

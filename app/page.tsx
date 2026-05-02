@@ -1,5 +1,4 @@
 import About from "@/components/sections/About";
-import Education from "@/components/sections/Education";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
 import Footer from "@/components/sections/Footer";
 import Hero from "@/components/sections/Hero";
@@ -25,7 +24,7 @@ export default function Home() {
         aria-hidden
       >
         <div className="pointer-events-none absolute inset-x-6 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent md:inset-x-12" />
-        <span className="relative z-10 bg-[#030712] px-3 text-sm text-cyan-500/40">
+        <span className="relative z-10 bg-background px-3 text-sm text-primary/40">
           ✦
         </span>
       </div>
@@ -43,10 +42,6 @@ export default function Home() {
       </FadeInSection>
 
       <FadeInSection delay={0.4}>
-        <Education />
-      </FadeInSection>
-
-      <FadeInSection delay={0.5}>
         <PortfolioContact />
       </FadeInSection>
 

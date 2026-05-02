@@ -130,7 +130,7 @@ export default function Skills() {
           />
           <div
             className="absolute inset-0 opacity-60 mix-blend-screen blur-[36px]
-              mask-[radial-gradient(ellipse_60%_55%_at_32%_52%,#000_32%,transparent_75%)]
+              mask-[radial-gradient(ellipse_60%_55%_at_32%_52%,rgba(0,0,0,1)_32%,transparent_75%)]
               [background:radial-gradient(ellipse_48%_38%_at_30%_45%,rgba(34,211,238,0.15)_0%,transparent_60%)]"
           />
         </div>

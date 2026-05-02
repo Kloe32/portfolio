@@ -20,7 +20,7 @@ export default function About() {
           />
           <div
             className="absolute inset-0 scale-105 opacity-65 mix-blend-screen blur-[32px] sm:blur-[40px]
-              [mask-image:radial-gradient(ellipse_65%_58%_at_72%_48%,#000_30%,transparent_75%)]
+              [mask-image:radial-gradient(ellipse_65%_58%_at_72%_48%,rgba(0,0,0,1)_30%,transparent_75%)]
               [background:radial-gradient(ellipse_50%_45%_at_75%_42%,rgba(34,211,238,0.12)_0%,transparent_60%)]"
           />
         </div>

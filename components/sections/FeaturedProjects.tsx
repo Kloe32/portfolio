@@ -39,7 +39,15 @@ const projects = [
   },
 ];
 
-export default function FeaturedProjects() {
+export default function FeaturedProjects({
+  showProjectsPageButton = true,
+  layout = "home",
+}: {
+  showProjectsPageButton?: boolean;
+  layout?: "home" | "page";
+}) {
+  const isProjectsPage = layout === "page";
+
   return (
     <section id="projects" className="relative px-6 py-20 md:py-24">
       <div className="relative isolate mx-auto w-full max-w-7xl font-exo">
@@ -53,32 +61,49 @@ export default function FeaturedProjects() {
           />
           <div
             className="absolute inset-0 opacity-60 mix-blend-screen blur-[36px]
-              mask-[radial-gradient(ellipse_60%_55%_at_32%_52%,#000_32%,transparent_75%)]
+              mask-[radial-gradient(ellipse_60%_55%_at_32%_52%,rgba(0,0,0,1)_32%,transparent_75%)]
               [background:radial-gradient(ellipse_48%_38%_at_30%_45%,rgba(34,211,238,0.15)_0%,transparent_60%)]"
           />
         </div>
 
-        <header className="mb-10">
+        <header className={cn("mb-10", isProjectsPage && "mb-12")}>
           <h2 className="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
-            Featured projects
+            {isProjectsPage ? "All projects" : "Featured projects"}
           </h2>
         </header>
 
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-7 shadow-[0_25px_80px_rgba(15,23,42,0.45)] backdrop-blur-2xl md:p-9">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {projects.map((project) => (
+        <div
+          className={cn(
+            "rounded-3xl border border-white/10 bg-white/5 shadow-[0_25px_80px_rgba(15,23,42,0.45)] backdrop-blur-2xl",
+            isProjectsPage ? "p-5 md:p-7" : "p-7 md:p-9",
+          )}
+        >
+          <div
+            className={cn(
+              "grid grid-cols-1",
+              isProjectsPage ? "gap-5 lg:grid-cols-12" : "gap-6 md:grid-cols-2 xl:grid-cols-3",
+            )}
+          >
+            {projects.map((project, index) => (
               <article
                 key={project.slug}
                 className={cn(
                   "group flex h-full flex-col overflow-hidden rounded-2xl border bg-black/45 transition-all duration-300",
                   "border-cyan-400/20 hover:-translate-y-1 hover:border-cyan-300/45",
                   "hover:shadow-[0_0_28px_rgba(56,189,248,0.12)]",
+                  isProjectsPage &&
+                    (index % 3 === 0
+                      ? "lg:col-span-7"
+                      : index % 3 === 1
+                        ? "lg:col-span-5"
+                        : "lg:col-span-6"),
                 )}
               >
                 <div className="border-b border-white/10 p-3">
                   <div
                     className={cn(
-                      "relative aspect-video overflow-hidden rounded-lg border border-white/10 bg-gradient-to-br",
+                      "relative overflow-hidden rounded-lg border border-white/10 bg-gradient-to-br",
+                      isProjectsPage ? "aspect-[16/8.6]" : "aspect-video",
                       project.bannerClass,
                     )}
                   >
@@ -88,14 +113,14 @@ export default function FeaturedProjects() {
                       <span className="h-2 w-2 rounded-full bg-emerald-300/80" />
                     </div>
 
-                    <div className="absolute inset-0 top-7 p-3">
+                    <div className={cn("absolute inset-0 top-7", isProjectsPage ? "p-4" : "p-3")}>
                       <div className="h-full rounded-md border border-white/10 bg-black/25 p-3 backdrop-blur-[1px]">
-                        <div className="h-2 w-24 rounded-full bg-white/30" />
-                        <div className="mt-2 grid grid-cols-2 gap-2">
-                          <div className="h-12 rounded bg-white/10" />
-                          <div className="h-12 rounded bg-white/10" />
+                        <div className={cn("rounded-full bg-white/30", isProjectsPage ? "h-2.5 w-28" : "h-2 w-24")} />
+                        <div className={cn("mt-2 grid grid-cols-2", isProjectsPage ? "gap-3" : "gap-2")}>
+                          <div className={cn("rounded bg-white/10", isProjectsPage ? "h-14" : "h-12")} />
+                          <div className={cn("rounded bg-white/10", isProjectsPage ? "h-14" : "h-12")} />
                         </div>
-                        <div className="mt-2 h-8 rounded bg-white/10" />
+                        <div className={cn("mt-2 rounded bg-white/10", isProjectsPage ? "h-10" : "h-8")} />
                       </div>
                     </div>
 
@@ -105,11 +130,16 @@ export default function FeaturedProjects() {
                   </div>
                 </div>
 
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="text-lg font-semibold text-white">
+                <div className={cn("flex flex-1 flex-col", isProjectsPage ? "p-6" : "p-5")}>
+                  <h3 className={cn("font-semibold text-white", isProjectsPage ? "text-xl" : "text-lg")}>
                     {project.title}
                   </h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-zinc-400">
+                  <p
+                    className={cn(
+                      "mt-3 flex-1 leading-relaxed text-zinc-400",
+                      isProjectsPage ? "text-[15px]" : "text-sm",
+                    )}
+                  >
                     {project.description}
                   </p>
 
@@ -120,8 +150,8 @@ export default function FeaturedProjects() {
                         className={cn(
                           "rounded-full border px-3 py-1 text-[11px] font-medium",
                           ti % 2 === 0
-                            ? "border-cyan-500/35 bg-cyan-500/10 text-cyan-200"
-                            : "border-[#A78BFA]/40 bg-[#A78BFA]/10 text-purple-100",
+                            ? "border-primary/35 bg-primary/10 text-foreground"
+                            : "border-border bg-accent text-accent-foreground",
                         )}
                       >
                         {t}
@@ -129,10 +159,13 @@ export default function FeaturedProjects() {
                     ))}
                   </div>
 
-                  <div className="mt-6 flex items-center gap-3 border-t border-white/10 pt-4">
+                  <div className={cn("mt-6 flex items-center gap-3 border-t border-white/10", isProjectsPage ? "pt-5" : "pt-4")}>
                     <Link
                       href={project.liveHref}
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-400/35 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:border-cyan-300/65"
+                      className={cn(
+                        "inline-flex items-center gap-1.5 rounded-lg border border-cyan-400/35 bg-cyan-400/10 font-semibold text-white transition-all duration-300 hover:border-cyan-300/65",
+                        isProjectsPage ? "px-4.5 py-2.5 text-sm" : "px-4 py-2 text-sm",
+                      )}
                     >
                       Live
                       <ExternalLink className="h-4 w-4 opacity-70" aria-hidden />
@@ -150,6 +183,18 @@ export default function FeaturedProjects() {
                 </div>
               </article>
             ))}
+          </div>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-3 border-t border-white/10 pt-6">
+            {showProjectsPageButton && (
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:border-cyan-300/60 hover:bg-cyan-400/10"
+              >
+                View all projects
+                <ExternalLink className="h-4 w-4 opacity-70" aria-hidden />
+              </Link>
+            )}
           </div>
         </div>
       </div>
