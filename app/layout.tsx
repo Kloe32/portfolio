@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Figtree, Space_Grotesk } from "next/font/google";
+import { Geist, Geist_Mono, Figtree, Space_Grotesk, Exo_2 } from "next/font/google";
 import "./globals.css";
+import { ClientProviders } from "@/components/ClientProviders";
 import Navbar from "@/components/sections/Navbar";
 import { cn } from "@/lib/utils";
 import { Particles } from "@/components/ui/particles";
@@ -23,10 +24,17 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
 });
 
+const exo2 = Exo_2({
+  subsets: ["latin"],
+  variable: "--font-exo-2",
+  weight: ["300", "400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Sai Saing Wan | Full Stack Developer",
   description:
     "Full Stack Developer specializing in React, Node.js, and TypeScript. Passionate about building scalable web applications and exploring new technologies.",
+  
 };
 
 export default function RootLayout({
@@ -45,6 +53,7 @@ export default function RootLayout({
         "font-sans",
         figtree.variable,
         spaceGrotesk.variable,
+        exo2.variable,
       )}
     >
       <body className="min-h-full flex flex-col">
@@ -55,7 +64,7 @@ export default function RootLayout({
         />
         <Navbar />
         <Cursor />
-        {children}
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );

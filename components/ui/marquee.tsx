@@ -8,6 +8,7 @@ export type MarqueeProps = {
   gap?: number;
   speed?: number;
   speedOnHover?: number;
+  pauseOnHover?: boolean;
   direction?: "horizontal" | "vertical";
   reverse?: boolean;
   className?: string;
@@ -22,6 +23,7 @@ export function Marquee({
   gap = 16,
   speed = 100,
   speedOnHover,
+  pauseOnHover = false,
   direction = "horizontal",
   reverse = false,
   className,
@@ -162,18 +164,31 @@ export function Marquee({
     }
   };
 
-  const hoverProps = speedOnHover
-    ? {
-        onHoverStart: () => {
-          setIsTransitioning(true);
-          setCurrentSpeed(speedOnHover);
-        },
-        onHoverEnd: () => {
-          setIsTransitioning(true);
-          setCurrentSpeed(speed);
-        },
-      }
-    : {};
+  const handleHoverStart = () => {
+    if (pauseOnHover) {
+      setIsPaused(true);
+      setIsTransitioning(true);
+      setKey((prevKey) => prevKey + 1);
+    }
+
+    if (speedOnHover) {
+      setIsTransitioning(true);
+      setCurrentSpeed(speedOnHover);
+    }
+  };
+
+  const handleHoverEnd = () => {
+    if (pauseOnHover) {
+      setIsPaused(false);
+      setIsTransitioning(true);
+      setKey((prevKey) => prevKey + 1);
+    }
+
+    if (speedOnHover) {
+      setIsTransitioning(true);
+      setCurrentSpeed(speed);
+    }
+  };
 
   const handleDragStart = () => {
     if (!draggable) return;
@@ -222,7 +237,8 @@ export function Marquee({
           gap: `${gap}px`,
         }}
         ref={containerRef}
-        {...hoverProps}
+        onHoverStart={handleHoverStart}
+        onHoverEnd={handleHoverEnd}
         drag={draggable ? (direction === "horizontal" ? "x" : "y") : false}
         dragConstraints={dragConstraints}
         onDragStart={handleDragStart}

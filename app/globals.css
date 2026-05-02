@@ -10,6 +10,7 @@
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
   --font-space-grotesk: var(--font-space-grotesk);
+  --font-exo: var(--font-exo-2);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -81,21 +82,31 @@
       opacity: 0;
     }
   }
-  --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
-  --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear
-;
+  --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite
+    alternate;
+  --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
   @keyframes shimmer-slide {
-  to {
-    transform: translate(calc(100cqw - 100%), 0);}}
+    to {
+      transform: translate(calc(100cqw - 100%), 0);
+    }
+  }
   @keyframes spin-around {
-  0% {
-    transform: translateZ(0) rotate(0);}
-  15%, 35% {
-    transform: translateZ(0) rotate(90deg);}
-  65%, 85% {
-    transform: translateZ(0) rotate(270deg);}
-  100% {
-    transform: translateZ(0) rotate(360deg);}}}
+    0% {
+      transform: translateZ(0) rotate(0);
+    }
+    15%,
+    35% {
+      transform: translateZ(0) rotate(90deg);
+    }
+    65%,
+    85% {
+      transform: translateZ(0) rotate(270deg);
+    }
+    100% {
+      transform: translateZ(0) rotate(360deg);
+    }
+  }
+}
 
 :root {
   --background: #030712;
@@ -174,8 +185,157 @@
     @apply bg-background text-foreground font-space-grotesk;
   }
   html {
-    @apply font-sans;
+    @apply font-sans scroll-pt-28 md:scroll-pt-32;
   }
+}
+
+.scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.06) 0px,
+    rgba(255, 255, 255, 0.06) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: screen;
+}
+
+.glitch-text {
+  position: relative;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+}
+
+.glitch-layer {
+  position: relative;
+  display: inline-block;
+  animation: glitch-shift 2.2s infinite;
+}
+
+.glitch-layer::before,
+.glitch-layer::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.75;
+}
+
+.glitch-layer::before {
+  color: #22d3ee;
+  transform: translate(-2px, -1px);
+  animation: glitch-clip 2.2s infinite;
+}
+
+.glitch-layer::after {
+  color: #a855f7;
+  transform: translate(2px, 1px);
+  animation: glitch-clip 2.2s infinite reverse;
+}
+
+@keyframes glitch-shift {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  45% {
+    transform: translate(-1px, 0);
+  }
+  50% {
+    transform: translate(1px, 0);
+  }
+  55% {
+    transform: translate(-1px, 1px);
+  }
+}
+
+@keyframes glitch-clip {
+  0%,
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+  20% {
+    clip-path: inset(10% 0 70% 0);
+  }
+  40% {
+    clip-path: inset(50% 0 20% 0);
+  }
+  60% {
+    clip-path: inset(20% 0 55% 0);
+  }
+  80% {
+    clip-path: inset(70% 0 10% 0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(6px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(6px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-slow {
+  0% {
+    transform: rotate(0deg) translateX(10px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(10px) rotate(-360deg);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-orbit {
+  animation: orbit 10s linear infinite;
+}
+
+.animate-orbit-slow {
+  animation: orbit-slow 16s linear infinite;
+}
+
+.animate-glow {
+  animation: glow 2.8s ease-in-out infinite;
 }
 
 * {
