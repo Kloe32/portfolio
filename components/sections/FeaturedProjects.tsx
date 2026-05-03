@@ -2,40 +2,111 @@ import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { FiGithub } from "react-icons/fi";
 import { cn } from "@/lib/utils";
+import { ProjectScreenshotRotator } from "@/components/sections/ProjectScreenshotRotator";
 
-const projects = [
+/** Put files in `public/images/projects/` and list paths in `screenshots` (cycles automatically). */
+type Project = {
+  slug: string;
+  name: string;
+  title: string;
+  description: string;
+  tech: string[];
+  liveHref: string;
+  repoHref: string;
+  bannerClass: string;
+  /** Optional screenshots — multiple URLs rotate on a timer (see ProjectScreenshotRotator). */
+  screenshots?: string[];
+};
+
+/** Slugs shown on the home “Featured projects” section only; `/projects` lists everything */
+const FEATURED_SLUGS = ["boxwise", "boxwise-admin", "portfolio"] as const;
+
+const projects: Project[] = [
   {
-    slug: "ai-chat",
-    name: "AI Chat App",
-    title: "AI Chat App",
+    slug: "boxwise",
+    name: "BoxWise",
+    title: "BoxWise (Client + Server)",
     description:
-      "Conversational interface with streamed responses and session memory. Experimented with prompt design and moderation.",
-    tech: ["React", "Node.js", "OpenAI"],
-    liveHref: "#",
-    repoHref: "https://github.com",
+      "Full-stack BoxWise application with a dedicated client and backend server. Focused on building end-to-end flows between UI and API.",
+    tech: [
+      "JavaScript",
+      "Node.js",
+      "REST API",
+      "MySQL",
+      "React + Vite",
+      "Tailwind CSS",
+    ],
+    liveHref: "https://www.boxwise.asia/",
+    repoHref: "https://github.com/Kloe32/boxWise_client",
     bannerClass: "from-cyan-500/25 via-sky-500/15 to-violet-500/25",
+    screenshots: [
+      "/images/projects/boxwiseHome.webp",
+      "/images/projects/boxwiseUnit.webp",
+      "/images/projects/boxwiseSelect.webp",
+      "/images/projects/boxwiseDashboard.webp",
+    ],
   },
   {
-    slug: "portfolio-v1",
-    name: "Portfolio v1",
-    title: "Portfolio v1",
+    slug: "boxwise-admin",
+    name: "BoxWise Admin",
+    title: "BoxWise Admin Dashboard",
     description:
-      "Personal site showcasing projects and skills with a focus on typography, motion, and layout polish.",
-    tech: ["Next.js", "Tailwind"],
+      "A JavaScript-based admin dashboard for BoxWise, built for internal operations to manage users and system data, oversee day-to-day workflows, and monitor activity from a single control panel.",
+    tech: ["JavaScript", "React + Vite", "Tailwind CSS"],
     liveHref: "#",
-    repoHref: "https://github.com",
-    bannerClass: "from-violet-500/25 via-cyan-500/15 to-sky-500/15",
+    repoHref: "https://github.com/Kloe32/boxWise_admin",
+    bannerClass: "from-amber-500/20 via-orange-500/12 to-rose-500/20",
+    screenshots: [
+      "/images/projects/boxwise-admin-dashboard.webp",
+      "/images/projects/boxwise-admin-unit.webp",
+      "/images/projects/boxwise-admin-booking.webp",
+    ],
   },
   {
-    slug: "task-manager",
-    name: "Task Manager",
-    title: "Task Manager",
+    slug: "portfolio",
+    name: "Portfolio",
+    title: "Developer Portfolio",
     description:
-      "CRUD workspaces with tagging and deadlines. Implemented REST APIs with validation and Postgres persistence.",
-    tech: ["React", "Express", "PostgreSQL"],
+      "Personal portfolio site built with TypeScript to present projects, skills, and links in a clean layout.",
+    tech: ["TypeScript", "Tailwind CSS", "Next.js"],
     liveHref: "#",
-    repoHref: "https://github.com",
+    repoHref: "https://github.com/Kloe32/portfolio",
+    bannerClass: "from-amber-500/20 via-orange-500/10 to-rose-500/20",
+    screenshots: ["/images/projects/portfolio.webp"],
+  },
+  {
+    slug: "stackoverflow-appwrite",
+    name: "StackOverflow App (Appwrite)",
+    title: "On-board StackOverflow Appwrite",
+    description:
+      "TypeScript project exploring Appwrite for auth and data management, structured around a StackOverflow-style workflow.",
+    tech: ["TypeScript", "Appwrite", "CSS"],
+    liveHref: "#",
+    repoHref: "https://github.com/Kloe32/on-board-stackoverflow-appwrite",
+    bannerClass: "from-violet-500/20 via-fuchsia-500/10 to-sky-500/20",
+  },
+  {
+    slug: "shopping-backend",
+    name: "Shopping Backend",
+    title: "Shopping Backend (API)",
+    description:
+      "E-commerce backend API for a shopping system. Built to support typical store workflows like managing products and users.",
+    tech: ["JavaScript", "Node.js", "REST API"],
+    liveHref: "#",
+    repoHref: "https://github.com/Kloe32/shopping_server",
     bannerClass: "from-cyan-500/20 via-blue-500/12 to-violet-500/22",
+  },
+
+  {
+    slug: "shopping-pwa",
+    name: "Shopping PWA",
+    title: "Shopping Progressive Web App",
+    description:
+      "PWA storefront for a shopping experience with a responsive UI. Built as a web app optimized for mobile-like usage.",
+    tech: ["JavaScript", "PWA", "HTML", "CSS"],
+    liveHref: "#",
+    repoHref: "https://github.com/Thuya-Myint/shopping-pwa",
+    bannerClass: "from-sky-500/20 via-violet-500/12 to-cyan-500/20",
   },
 ];
 
@@ -47,6 +118,12 @@ export default function FeaturedProjects({
   layout?: "home" | "page";
 }) {
   const isProjectsPage = layout === "page";
+
+  const displayedProjects = isProjectsPage
+    ? projects
+    : FEATURED_SLUGS.map((slug) =>
+        projects.find((p) => p.slug === slug),
+      ).filter((p): p is (typeof projects)[number] => p != null);
 
   return (
     <section id="projects" className="relative px-6 py-20 md:py-24">
@@ -74,8 +151,8 @@ export default function FeaturedProjects({
 
         <div
           className={cn(
-            "rounded-3xl border border-white/10 bg-white/5 shadow-[0_25px_80px_rgba(15,23,42,0.45)] backdrop-blur-2xl",
-            isProjectsPage ? "p-5 md:p-7" : "p-7 md:p-9",
+            "border border-white/10 bg-white/5 shadow-[0_25px_80px_rgba(15,23,42,0.45)] backdrop-blur-2xl",
+            isProjectsPage ? "p-4 md:p-6" : "p-6 md:p-8",
           )}
         >
           <div
@@ -86,11 +163,11 @@ export default function FeaturedProjects({
                 : "gap-6 md:grid-cols-2 xl:grid-cols-3",
             )}
           >
-            {projects.map((project, index) => (
+            {displayedProjects.map((project, index) => (
               <article
                 key={project.slug}
                 className={cn(
-                  "group flex h-full flex-col overflow-hidden rounded-2xl border bg-black/45 transition-all duration-300",
+                  "group flex h-full flex-col overflow-hidden border bg-black/45 transition-all duration-300",
                   "border-cyan-400/20 hover:-translate-y-1 hover:border-cyan-300/45",
                   "hover:shadow-[0_0_28px_rgba(56,189,248,0.12)]",
                   isProjectsPage &&
@@ -101,64 +178,76 @@ export default function FeaturedProjects({
                         : "lg:col-span-6"),
                 )}
               >
-                <div className="border-b border-white/10 p-3">
+                <div className="border-b border-white/10 p-0">
                   <div
                     className={cn(
-                      "relative overflow-hidden rounded-lg border border-white/10 bg-linear-to-br",
-                      isProjectsPage ? "aspect-[16/8.6]" : "aspect-video",
+                      "relative w-full overflow-hidden border border-white/10 bg-linear-to-br",
+                      isProjectsPage
+                        ? "min-h-[12rem] aspect-[16/9] sm:min-h-[14rem] md:min-h-[16rem]"
+                        : "min-h-[12rem] aspect-[3/2] sm:min-h-[15rem] md:min-h-[18rem]",
                       project.bannerClass,
                     )}
                   >
-                    <div className="absolute inset-x-0 top-0 flex h-7 items-center gap-1.5 border-b border-white/10 bg-black/40 px-3">
-                      <span className="h-2 w-2 rounded-full bg-rose-300/80" />
-                      <span className="h-2 w-2 rounded-full bg-amber-300/80" />
-                      <span className="h-2 w-2 rounded-full bg-emerald-300/80" />
+                    <div className="absolute inset-x-0 top-0 z-20 flex h-6 items-center gap-1.5 border-b border-white/10 bg-black/50 px-2.5">
+                      <span className="h-2 w-2 bg-rose-300/80" />
+                      <span className="h-2 w-2 bg-amber-300/80" />
+                      <span className="h-2 w-2 bg-emerald-300/80" />
                     </div>
 
                     <div
                       className={cn(
-                        "absolute inset-0 top-7",
-                        isProjectsPage ? "p-4" : "p-3",
+                        "absolute inset-0 top-6 overflow-hidden p-0",
                       )}
                     >
-                      <div className="h-full rounded-md border border-white/10 bg-black/25 p-3 backdrop-blur-[1px]">
-                        <div
-                          className={cn(
-                            "rounded-full bg-white/30",
-                            isProjectsPage ? "h-2.5 w-28" : "h-2 w-24",
-                          )}
+                      {project.screenshots && project.screenshots.length > 0 ? (
+                        <ProjectScreenshotRotator
+                          images={project.screenshots}
+                          title={project.title}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 520px"
                         />
-                        <div
-                          className={cn(
-                            "mt-2 grid grid-cols-2",
-                            isProjectsPage ? "gap-3" : "gap-2",
-                          )}
-                        >
+                      ) : (
+                        <div className="h-full border border-white/10 bg-black/25 p-3 backdrop-blur-[1px]">
                           <div
                             className={cn(
-                              "rounded bg-white/10",
-                              isProjectsPage ? "h-14" : "h-12",
+                              "bg-white/30",
+                              isProjectsPage ? "h-2.5 w-28" : "h-2 w-24",
                             )}
                           />
                           <div
                             className={cn(
-                              "rounded bg-white/10",
-                              isProjectsPage ? "h-14" : "h-12",
+                              "mt-2 grid grid-cols-2",
+                              isProjectsPage ? "gap-3" : "gap-2",
+                            )}
+                          >
+                            <div
+                              className={cn(
+                                "bg-white/10",
+                                isProjectsPage ? "h-14" : "h-12",
+                              )}
+                            />
+                            <div
+                              className={cn(
+                                "bg-white/10",
+                                isProjectsPage ? "h-14" : "h-12",
+                              )}
+                            />
+                          </div>
+                          <div
+                            className={cn(
+                              "mt-2 bg-white/10",
+                              isProjectsPage ? "h-10" : "h-8",
                             )}
                           />
                         </div>
-                        <div
-                          className={cn(
-                            "mt-2 rounded bg-white/10",
-                            isProjectsPage ? "h-10" : "h-8",
-                          )}
-                        />
-                      </div>
+                      )}
                     </div>
 
-                    <span className="absolute bottom-2 right-2 rounded-md border border-white/20 bg-black/45 px-2 py-1 text-[10px] font-medium uppercase tracking-wide text-white/85">
-                      Screenshot Placeholder
-                    </span>
+                    {(!project.screenshots ||
+                      project.screenshots.length === 0) && (
+                      <span className="absolute bottom-2 right-2 border border-white/20 bg-black/45 px-2 py-1 text-[10px] font-medium uppercase tracking-wide text-white/85">
+                        Screenshot Placeholder
+                      </span>
+                    )}
                   </div>
                 </div>
 
@@ -190,7 +279,7 @@ export default function FeaturedProjects({
                       <span
                         key={t}
                         className={cn(
-                          "rounded-full border px-3 py-1 text-[11px] font-medium",
+                          "border px-3 py-1 text-[11px] font-medium",
                           ti % 2 === 0
                             ? "border-primary/35 bg-primary/10 text-foreground"
                             : "border-border bg-accent text-accent-foreground",
@@ -210,7 +299,7 @@ export default function FeaturedProjects({
                     <Link
                       href={project.liveHref}
                       className={cn(
-                        "inline-flex items-center gap-1.5 rounded-lg border border-cyan-400/35 bg-cyan-400/10 font-semibold text-white transition-all duration-300 hover:border-cyan-300/65",
+                        "inline-flex items-center gap-1.5 border border-cyan-400/35 bg-cyan-400/10 font-semibold text-white transition-all duration-300 hover:border-cyan-300/65",
                         isProjectsPage
                           ? "px-4.5 py-2.5 text-sm"
                           : "px-4 py-2 text-sm",
@@ -227,7 +316,7 @@ export default function FeaturedProjects({
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${project.title} on GitHub`}
-                      className="inline-flex rounded-full border border-white/15 bg-black/40 p-2.5 text-cyan-300 transition-colors duration-300 hover:border-cyan-300/45 hover:text-cyan-200"
+                      className="inline-flex border border-white/15 bg-black/40 p-2.5 text-cyan-300 transition-colors duration-300 hover:border-cyan-300/45 hover:text-cyan-200"
                     >
                       <FiGithub className="h-5 w-5" />
                     </Link>
@@ -241,7 +330,7 @@ export default function FeaturedProjects({
             {showProjectsPageButton && (
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:border-cyan-300/60 hover:bg-cyan-400/10"
+                className="inline-flex items-center gap-2 border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:border-cyan-300/60 hover:bg-cyan-400/10"
               >
                 View all projects
                 <ExternalLink className="h-4 w-4 opacity-70" aria-hidden />

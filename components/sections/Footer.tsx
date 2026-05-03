@@ -29,7 +29,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors duration-300 hover:border-primary/50 hover:text-primary"
+            className="flex h-9 w-9 items-center justify-center border border-border bg-card text-foreground transition-colors duration-300 hover:border-primary/50 hover:text-primary"
           >
             <FiGithub className="text-base" />
           </a>
@@ -38,21 +38,21 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors duration-300 hover:border-primary/50 hover:text-primary"
+            className="flex h-9 w-9 items-center justify-center border border-border bg-card text-foreground transition-colors duration-300 hover:border-primary/50 hover:text-primary"
           >
             <FiLinkedin className="text-base" />
           </a>
           <a
             href="mailto:angellay969.al969@gmail.com"
             aria-label="Email"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors duration-300 hover:border-primary/50 hover:text-primary"
+            className="flex h-9 w-9 items-center justify-center border border-border bg-card text-foreground transition-colors duration-300 hover:border-primary/50 hover:text-primary"
           >
             <FiMail className="text-base" />
           </a>
           <a
             href="https://wa.me/6591308695?text=Hello, I came across your portfolio and I'm interested in your services."
             aria-label="Whatsapp"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors duration-300 hover:border-primary/50 hover:text-primary"
+            className="flex h-9 w-9 items-center justify-center border border-border bg-card text-foreground transition-colors duration-300 hover:border-primary/50 hover:text-primary"
           >
             <FaWhatsapp className="text-base" />
           </a>

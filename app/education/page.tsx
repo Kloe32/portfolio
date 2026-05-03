@@ -31,7 +31,7 @@ export default function EducationPage() {
             <div className="mt-7">
               <Link
                 href="/projects"
-                className="inline-flex items-center rounded-lg border border-cyan-400/35 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:border-cyan-300/65"
+                className="inline-flex items-center border border-cyan-400/35 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:border-cyan-300/65"
               >
                 View projects
               </Link>

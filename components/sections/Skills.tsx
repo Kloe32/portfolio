@@ -156,7 +156,7 @@ export default function Skills() {
             transition={{ delay: 0.06 }}
             className="lg:col-span-8"
           >
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-7 shadow-[0_25px_80px_rgba(15,23,42,0.45)] backdrop-blur-2xl md:p-9">
+            <div className="border border-white/10 bg-white/5 p-7 shadow-[0_25px_80px_rgba(15,23,42,0.45)] backdrop-blur-2xl md:p-9">
               <div className="grid gap-6 md:grid-cols-3">
                 {categories.map(({ key, title, Icon, skills, variant }) => (
                   <motion.article
@@ -165,7 +165,7 @@ export default function Skills() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.45 }}
                     viewport={{ once: true }}
-                    className="rounded-2xl border border-white/10 bg-black/45 p-5 shadow-[0_0_25px_rgba(56,189,248,0.12)]"
+                    className="border border-white/10 bg-black/45 p-5 shadow-[0_0_25px_rgba(56,189,248,0.12)]"
                   >
                     <div className="mb-4 flex items-center gap-2">
                       <Icon
@@ -178,31 +178,31 @@ export default function Skills() {
                     </div>
 
                     <div className="space-y-3">
-                      {skills.map((skill, rackIndex) => {
+                      {skills.map((skill) => {
                         const SkillIcon = skill.icon;
                         return (
                           <div
                             key={`${key}-${skill.name}`}
-                            className={`group relative overflow-hidden rounded-xl border bg-zinc-950/85 px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 ${rackTheme[variant].rackBorder} ${rackTheme[variant].rackGlow}`}
+                            className={`group relative overflow-hidden border bg-zinc-950/85 px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 ${rackTheme[variant].rackBorder} ${rackTheme[variant].rackGlow}`}
                           >
                             <div
                               aria-hidden
-                              className="absolute inset-y-1 left-1 w-2 rounded-full border border-white/10 bg-zinc-900/90"
+                              className="absolute inset-y-1 left-1 w-2 border border-white/10 bg-zinc-900/90"
                             >
                               <div className="mt-1 space-y-1">
-                                <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
-                                <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
-                                <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
+                                <span className="mx-auto block h-0.5 w-0.5 bg-zinc-600" />
+                                <span className="mx-auto block h-0.5 w-0.5 bg-zinc-600" />
+                                <span className="mx-auto block h-0.5 w-0.5 bg-zinc-600" />
                               </div>
                             </div>
                             <div
                               aria-hidden
-                              className="absolute inset-y-1 right-1 w-2 rounded-full border border-white/10 bg-zinc-900/90"
+                              className="absolute inset-y-1 right-1 w-2 border border-white/10 bg-zinc-900/90"
                             >
                               <div className="mt-1 space-y-1">
-                                <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
-                                <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
-                                <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
+                                <span className="mx-auto block h-0.5 w-0.5 bg-zinc-600" />
+                                <span className="mx-auto block h-0.5 w-0.5 bg-zinc-600" />
+                                <span className="mx-auto block h-0.5 w-0.5 bg-zinc-600" />
                               </div>
                             </div>
 
@@ -217,7 +217,7 @@ export default function Skills() {
                               </div>
                               <div className="flex items-center gap-2">
                                 <span
-                                  className={`h-2 w-2 rounded-full transition-transform duration-300 group-hover:scale-125 ${rackTheme[variant].led}`}
+                                  className={`h-2 w-2 transition-transform duration-300 group-hover:scale-125 ${rackTheme[variant].led}`}
                                   aria-hidden
                                 />
                               </div>
@@ -227,15 +227,15 @@ export default function Skills() {
                               aria-hidden
                               className="mb-2 ml-3 mr-3 flex gap-1 opacity-70"
                             >
-                              <span className="h-0.5 flex-1 rounded-full bg-zinc-700" />
-                              <span className="h-0.5 flex-1 rounded-full bg-zinc-700" />
-                              <span className="h-0.5 flex-1 rounded-full bg-zinc-700" />
+                              <span className="h-0.5 flex-1 bg-zinc-700" />
+                              <span className="h-0.5 flex-1 bg-zinc-700" />
+                              <span className="h-0.5 flex-1 bg-zinc-700" />
                             </div>
 
                             <div className="ml-3 mr-3 flex items-center gap-2">
-                              <div className="h-1.5 flex-1 rounded-full bg-zinc-800/90">
+                              <div className="h-1.5 flex-1 bg-zinc-800/90">
                                 <div
-                                  className={`h-full rounded-full bg-linear-to-r transition-all duration-500 group-hover:brightness-125 ${rackTheme[variant].progress}`}
+                                  className={`h-full bg-linear-to-r transition-all duration-500 group-hover:brightness-125 ${rackTheme[variant].progress}`}
                                   style={{ width: `${skill.level}%` }}
                                   aria-hidden
                                 />

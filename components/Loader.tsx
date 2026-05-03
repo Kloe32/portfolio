@@ -59,7 +59,7 @@ export default function Loader({ onDismiss }: LoaderProps) {
       {stars.map((s, i) => (
         <span
           key={i}
-          className="pointer-events-none absolute h-px w-px animate-pulse rounded-full bg-white"
+          className="pointer-events-none absolute h-px w-px animate-pulse bg-white"
           style={{
             left: s.left,
             top: s.top,
@@ -78,9 +78,9 @@ export default function Loader({ onDismiss }: LoaderProps) {
         <p className="mt-4 font-mono text-xs tracking-widest text-cyan-400">
           Initializing systems...
         </p>
-        <div className="mt-8 h-[2px] w-48 overflow-hidden rounded-full bg-white/5">
+        <div className="mt-8 h-[2px] w-48 overflow-hidden bg-white/5">
           <div
-            className="h-full rounded-full bg-cyan-400 transition-[width] duration-150 ease-linear"
+            className="h-full bg-cyan-400 transition-[width] duration-150 ease-linear"
             style={{ width: `${progress}%` }}
           />
         </div>

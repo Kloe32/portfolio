@@ -10,10 +10,10 @@ const PRIMARY = "#51a2ff";
 
 /** Fixed positions/sizes so layout feels organic without runtime randomness */
 const FLOAT_SHAPES = [
-  { className: "left-[6%] top-[14%] h-1.5 w-1.5 rounded-full", delay: 0 },
-  { className: "right-[11%] top-[22%] h-2 w-2 rotate-12 rounded-sm", delay: 0.15 },
-  { className: "left-[18%] bottom-[26%] h-1 w-3 rounded-full", delay: 0.08 },
-  { className: "right-[20%] bottom-[18%] h-2.5 w-2.5 rounded-full", delay: 0.22 },
+  { className: "left-[6%] top-[14%] h-1.5 w-1.5", delay: 0 },
+  { className: "right-[11%] top-[22%] h-2 w-2 rotate-12", delay: 0.15 },
+  { className: "left-[18%] bottom-[26%] h-1 w-3", delay: 0.08 },
+  { className: "right-[20%] bottom-[18%] h-2.5 w-2.5", delay: 0.22 },
   { className: "left-[42%] top-[8%] h-px w-8 rotate-[35deg]", delay: 0.12 },
   { className: "right-[38%] bottom-[12%] h-px w-6 -rotate-[18deg]", delay: 0.18 },
 ] as const;
@@ -24,7 +24,7 @@ export default function PortfolioContact() {
   };
 
   const fieldClass = cn(
-    "w-full rounded-xl bg-white/[0.06] px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-500",
+    "w-full bg-white/[0.06] px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-500",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
   );
 
@@ -93,14 +93,14 @@ export default function PortfolioContact() {
           >
             <div
               className={cn(
-                "relative overflow-hidden rounded-3xl bg-white/5 p-7 shadow-[0_25px_80px_rgba(15,23,42,0.45)] backdrop-blur-2xl",
+                "relative overflow-hidden bg-white/5 p-7 shadow-[0_25px_80px_rgba(15,23,42,0.45)] backdrop-blur-2xl",
                 "md:p-8",
               )}
             >
               {/* In-card micro accents */}
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl"
+                className="pointer-events-none absolute inset-0 overflow-hidden"
               >
                 {FLOAT_SHAPES.map((shape, i) => (
                   <motion.span
@@ -121,7 +121,7 @@ export default function PortfolioContact() {
                   whileInView={{ opacity: 0.45, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.25, duration: 0.45 }}
-                  className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-primary/[0.07] blur-2xl"
+                  className="absolute -right-6 -top-6 h-24 w-24 bg-primary/[0.07] blur-2xl"
                 />
                 <span className="absolute bottom-5 left-5 text-primary/20">✦</span>
                 <span className="absolute right-7 top-1/2 -translate-y-1/2 text-[10px] tracking-[0.4em] text-zinc-600/70">
@@ -134,7 +134,7 @@ export default function PortfolioContact() {
                   <ul className="space-y-5">
                     <li className="flex gap-4">
                       <span
-                        className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/12 text-primary"
+                        className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center bg-primary/12 text-primary"
                         aria-hidden
                       >
                         <Mail className="h-4 w-4" />
@@ -152,7 +152,7 @@ export default function PortfolioContact() {
 
                     <li className="flex gap-4">
                       <span
-                        className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/12 text-primary"
+                        className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center bg-primary/12 text-primary"
                         aria-hidden
                       >
                         <MapPin className="h-4 w-4" />
@@ -167,7 +167,7 @@ export default function PortfolioContact() {
 
                     <li className="flex gap-4">
                       <span
-                        className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/12 text-primary"
+                        className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center bg-primary/12 text-primary"
                         aria-hidden
                       >
                         <Clock className="h-4 w-4" />
@@ -178,8 +178,8 @@ export default function PortfolioContact() {
                         </p>
                         <div className="mt-2 flex items-center gap-2">
                           <span className="relative inline-flex h-2 w-2">
-                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/45" />
-                            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+                            <span className="absolute inline-flex h-full w-full animate-ping bg-emerald-400/45" />
+                            <span className="relative inline-flex h-2 w-2 bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
                           </span>
                           <span className="text-sm font-medium text-zinc-300">
                             Open to work
@@ -226,7 +226,7 @@ export default function PortfolioContact() {
                     </label>
                     <button
                       type="submit"
-                      className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground shadow-[0_10px_32px_rgba(81,162,255,0.28)] transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                      className="mt-1 inline-flex w-full items-center justify-center gap-2 bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground shadow-[0_10px_32px_rgba(81,162,255,0.28)] transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
                       Send message
                       <Send className="h-4 w-4 opacity-90" aria-hidden />

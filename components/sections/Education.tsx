@@ -129,7 +129,7 @@ function EducationCard({
   summary,
 }: (typeof items)[number]) {
   return (
-    <div className="rounded-xl border border-cyan-400/20 bg-black/45 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/45 hover:shadow-[0_0_28px_rgba(56,189,248,0.12)] md:w-full">
+    <div className="border border-cyan-400/20 bg-black/45 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/45 hover:shadow-[0_0_28px_rgba(56,189,248,0.12)] md:w-full">
       <p className="text-lg font-semibold text-white">{institution}</p>
       <p className="mt-1 text-sm font-medium text-cyan-300">{degree}</p>
       <p className="mt-3 text-sm leading-relaxed text-zinc-400">{summary}</p>

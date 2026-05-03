@@ -47,9 +47,9 @@ export default function Navbar() {
   return (
     <nav className="fixed inset-x-0 top-0 z-50">
       <div className="relative overflow-hidden border-b border-border bg-background/95 backdrop-blur-2xl">
-        <div className="pointer-events-none absolute left-16 top-3 h-2.5 w-2.5 rounded-full bg-cyan-400/70 shadow-[0_0_12px_rgba(56,189,248,0.8)] animate-pulse" />
-        <div className="pointer-events-none absolute right-28 top-2 h-1.5 w-1.5 rounded-full bg-primary/75 shadow-[0_0_10px_rgba(81,162,255,0.7)] animate-pulse [animation-delay:500ms]" />
-        <div className="pointer-events-none absolute right-10 bottom-3 h-2 w-2 rounded-full bg-cyan-300/65 shadow-[0_0_10px_rgba(34,211,238,0.75)] animate-pulse [animation-delay:900ms]" />
+        <div className="pointer-events-none absolute left-16 top-3 h-2.5 w-2.5 bg-cyan-400/70 shadow-[0_0_12px_rgba(56,189,248,0.8)] animate-pulse" />
+        <div className="pointer-events-none absolute right-28 top-2 h-1.5 w-1.5 bg-primary/75 shadow-[0_0_10px_rgba(81,162,255,0.7)] animate-pulse [animation-delay:500ms]" />
+        <div className="pointer-events-none absolute right-10 bottom-3 h-2 w-2 bg-cyan-300/65 shadow-[0_0_10px_rgba(34,211,238,0.75)] animate-pulse [animation-delay:900ms]" />
         <div className="pointer-events-none absolute inset-0 opacity-30 scanlines" />
 
         <div className="mx-auto grid min-h-[4.2rem] w-full max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-5 md:px-6">
@@ -73,7 +73,7 @@ export default function Navbar() {
                   href={link.href}
                   onClick={() => setActiveLink(link.label)}
                   className={cn(
-                    "rounded-lg px-4.5 py-2.5 text-sm font-semibold whitespace-nowrap transition-all duration-200",
+                    "px-4.5 py-2.5 text-sm font-semibold whitespace-nowrap transition-all duration-200",
                     activeLink === link.label
                       ? "border border-primary/50 bg-primary/15 text-primary shadow-[0_0_12px_rgba(81,162,255,0.45)]"
                       : "text-muted-foreground hover:bg-primary/10 hover:text-primary",
@@ -89,7 +89,7 @@ export default function Navbar() {
             <a
               href="/resume.pdf"
               download
-              className="hidden items-center gap-1.5 rounded-lg border border-primary/60 bg-primary px-3.5 py-2 text-xs font-semibold text-primary-foreground shadow-[0_0_14px_rgba(81,162,255,0.45)] transition-all duration-200 hover:scale-[1.02] hover:brightness-110 md:inline-flex"
+              className="hidden items-center gap-1.5 border border-primary/60 bg-primary px-3.5 py-2 text-xs font-semibold text-primary-foreground shadow-[0_0_14px_rgba(81,162,255,0.45)] transition-all duration-200 hover:scale-[1.02] hover:brightness-110 md:inline-flex"
               aria-label="Download resume"
             >
               Resume
@@ -97,14 +97,14 @@ export default function Navbar() {
             </a>
             <button
               onClick={() => applyTheme(!isDark)}
-              className="rounded-md border border-primary/40 p-2 text-primary transition-colors hover:bg-primary/10"
+              className="border border-primary/40 p-2 text-primary transition-colors hover:bg-primary/10"
               aria-label="Toggle theme"
             >
               {isDark ? <Sun size={20} /> : <Moon size={20} />}
             </button>
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="rounded-md border border-primary/50 p-2.5 text-primary transition-colors hover:bg-primary/10 md:hidden"
+              className="border border-primary/50 p-2.5 text-primary transition-colors hover:bg-primary/10 md:hidden"
               aria-label="Toggle menu"
             >
               {menuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -122,7 +122,7 @@ export default function Navbar() {
                   href="/resume.pdf"
                   download
                   onClick={() => setMenuOpen(false)}
-                  className="relative z-10 flex items-center justify-center gap-2 rounded-lg border border-primary/60 bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground shadow-[0_0_14px_rgba(81,162,255,0.45)] transition-all duration-200 hover:brightness-110"
+                  className="relative z-10 flex items-center justify-center gap-2 border border-primary/60 bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground shadow-[0_0_14px_rgba(81,162,255,0.45)] transition-all duration-200 hover:brightness-110"
                   aria-label="Download resume"
                 >
                   Resume
@@ -138,7 +138,7 @@ export default function Navbar() {
                       setMenuOpen(false);
                     }}
                     className={cn(
-                      "relative z-10 block px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200",
+                      "relative z-10 block px-4 py-3 text-sm font-semibold transition-all duration-200",
                       activeLink === link.label
                         ? "bg-primary/15 text-primary border border-primary/50"
                         : "text-muted-foreground hover:text-primary hover:bg-primary/10",

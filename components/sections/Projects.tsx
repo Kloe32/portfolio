@@ -43,7 +43,7 @@ export default function Projects() {
           {sampleProjects.map((project) => (
             <article
               key={project.title}
-              className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6 transition hover:border-zinc-700"
+              className="border border-zinc-800 bg-zinc-900/60 p-6 transition hover:border-zinc-700"
             >
               <h3 className="text-xl font-semibold text-white">
                 {project.title}
@@ -56,7 +56,7 @@ export default function Projects() {
                 {project.tech.map((item) => (
                   <span
                     key={item}
-                    className="rounded-full border border-zinc-700 bg-zinc-800 px-3 py-1 text-xs text-zinc-300"
+                    className="border border-zinc-700 bg-zinc-800 px-3 py-1 text-xs text-zinc-300"
                   >
                     {item}
                   </span>
@@ -66,13 +66,13 @@ export default function Projects() {
               <div className="mt-6 flex gap-3">
                 <a
                   href={project.demoUrl}
-                  className="rounded-full bg-white px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200"
+                  className="bg-white px-4 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200"
                 >
                   Live Demo
                 </a>
                 <a
                   href={project.codeUrl}
-                  className="rounded-full border border-zinc-600 px-4 py-2 text-sm font-medium text-white transition hover:border-zinc-400"
+                  className="border border-zinc-600 px-4 py-2 text-sm font-medium text-white transition hover:border-zinc-400"
                 >
                   Code
                 </a>

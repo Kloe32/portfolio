@@ -86,7 +86,7 @@ export default function Hero() {
               </ShimmerButton>
               <Link
                 href="#contact"
-                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-primary/40 bg-primary/10 px-5 py-2.5 text-sm font-semibold text-foreground shadow-[0_0_20px_rgba(81,162,255,0.18)] transition-all duration-300 hover:border-primary/60 hover:bg-primary/15 hover:text-foreground lg:text-base"
+                className="group relative inline-flex items-center gap-2 overflow-hidden border border-primary/40 bg-primary/10 px-5 py-2.5 text-sm font-semibold text-foreground shadow-[0_0_20px_rgba(81,162,255,0.18)] transition-all duration-300 hover:border-primary/60 hover:bg-primary/15 hover:text-foreground lg:text-base"
               >
                 <span className="absolute inset-0 -z-10 bg-linear-to-r from-primary/10 via-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <span className="flex items-center gap-2">
@@ -98,23 +98,23 @@ export default function Hero() {
           </div>
 
           <div className="flex justify-center lg:justify-end">
-            <div className="relative flex h-80 w-80 items-center justify-center overflow-hidden rounded-[2.5rem] bg-white/5 shadow-2xl shadow-blue-500/10 sm:h-96 sm:w-96">
+            <div className="relative flex h-80 w-80 items-center justify-center overflow-hidden bg-white/5 shadow-2xl shadow-blue-500/10 sm:h-96 sm:w-96">
               <div className="absolute inset-0 bg-linear-to-br from-blue-500/15 via-transparent to-cyan-500/15" />
 
-              <div className="absolute -top-6 -right-4 h-6 w-6 rounded-full bg-blue-400/60 blur-[1px] animate-float-slow" />
-              <div className="absolute -bottom-8 right-10 h-8 w-8 rounded-full bg-cyan-300/50 blur-[2px] animate-float" />
-              <div className="absolute left-6 -bottom-4 h-10 w-10 rounded-full border border-blue-300/40 bg-white/5 animate-orbit" />
-              <div className="absolute -left-8 top-10 h-14 w-14 rounded-full border border-cyan-400/40 bg-cyan-400/5 animate-orbit-slow" />
+              <div className="absolute -top-6 -right-4 h-6 w-6 bg-blue-400/60 blur-[1px] animate-float-slow" />
+              <div className="absolute -bottom-8 right-10 h-8 w-8 bg-cyan-300/50 blur-[2px] animate-float" />
+              <div className="absolute left-6 -bottom-4 h-10 w-10 border border-blue-300/40 bg-white/5 animate-orbit" />
+              <div className="absolute -left-8 top-10 h-14 w-14 border border-cyan-400/40 bg-cyan-400/5 animate-orbit-slow" />
               <div className="absolute right-10 top-6 h-2 w-16 rotate-35 bg-linear-to-r from-transparent via-blue-200/50 to-transparent animate-glow" />
 
-              <div className="relative z-10 flex h-64 w-64 items-center justify-center rounded-3xl bg-white/5 ring-1 ring-blue-500/30 shadow-[0_0_30px_rgba(81,162,255,0.25)] transition-transform duration-500 hover:-translate-y-1 hover:scale-[1.02] sm:h-72 sm:w-72">
-                <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-blue-500/10 via-transparent to-cyan-500/15" />
+              <div className="relative z-10 flex h-64 w-64 items-center justify-center bg-white/5 ring-1 ring-blue-500/30 shadow-[0_0_30px_rgba(81,162,255,0.25)] transition-transform duration-500 hover:-translate-y-1 hover:scale-[1.02] sm:h-72 sm:w-72">
+                <div className="absolute inset-0 bg-linear-to-br from-blue-500/10 via-transparent to-cyan-500/15" />
                 <Image
                   src="/images/Profile.png"
                   alt="Profile"
                   width={320}
                   height={320}
-                  className="relative z-10 h-full w-full rounded-3xl object-cover"
+                  className="relative z-10 h-full w-full object-cover"
                   priority
                 />
               </div>
@@ -131,12 +131,12 @@ export default function Hero() {
               {techStacks.map((tech) => (
                 <div
                   key={tech.name}
-                  className="group relative flex items-center rounded-full border border-primary/30 bg-card p-3 text-xs text-foreground shadow-[0_0_12px_rgba(81,162,255,0.2)] backdrop-blur-sm hover:gap-2"
+                  className="group relative flex items-center border border-primary/30 bg-card p-3 text-xs text-foreground shadow-[0_0_12px_rgba(81,162,255,0.2)] backdrop-blur-sm hover:gap-2"
                 >
                   <StackIcon
                     name={tech.stack}
                     className={cn(
-                      "size-8 rounded-full md:size-10",
+                      "size-8 md:size-10",
                       tech.dark && "filter-[invert(1)_brightness(2)]",
                     )}
                   />
