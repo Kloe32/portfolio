@@ -54,7 +54,7 @@ export default function PortfolioContact() {
         {/* Loose scatter — section-level décor */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 -z-[5] overflow-hidden"
+          className="pointer-events-none absolute inset-0 -z-5 overflow-hidden"
         >
           <span className="absolute right-[4%] top-[8%] text-lg text-primary/25">
             ✦
@@ -62,7 +62,7 @@ export default function PortfolioContact() {
           <span className="absolute bottom-[20%] left-[3%] text-xs text-primary/20">
             · ·
           </span>
-          <span className="absolute right-[12%] top-[38%] h-8 w-px bg-gradient-to-b from-transparent via-primary/25 to-transparent" />
+          <span className="absolute right-[12%] top-[38%] h-8 w-px bg-linear-to-b from-transparent via-primary/25 to-transparent" />
         </div>
 
         <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
@@ -93,7 +93,7 @@ export default function PortfolioContact() {
           >
             <div
               className={cn(
-                "relative overflow-hidden rounded-3xl bg-white/[0.05] p-7 shadow-[0_25px_80px_rgba(15,23,42,0.45)] backdrop-blur-2xl",
+                "relative overflow-hidden rounded-3xl bg-white/5 p-7 shadow-[0_25px_80px_rgba(15,23,42,0.45)] backdrop-blur-2xl",
                 "md:p-8",
               )}
             >

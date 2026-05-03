@@ -158,109 +158,107 @@ export default function Skills() {
           >
             <div className="rounded-3xl border border-white/10 bg-white/5 p-7 shadow-[0_25px_80px_rgba(15,23,42,0.45)] backdrop-blur-2xl md:p-9">
               <div className="grid gap-6 md:grid-cols-3">
-                {categories.map(
-                  ({ key, title, Icon, skills, variant }) => (
-                    <motion.article
-                      key={key}
-                      initial={{ opacity: 0, y: 18 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.45 }}
-                      viewport={{ once: true }}
-                      className="rounded-2xl border border-white/10 bg-black/45 p-5 shadow-[0_0_25px_rgba(56,189,248,0.12)]"
-                    >
-                      <div className="mb-4 flex items-center gap-2">
-                        <Icon
-                          className={`h-5 w-5 ${rackTheme[variant].icon}`}
-                          aria-hidden
-                        />
-                        <h3 className="text-sm font-semibold text-white">
-                          {title}
-                        </h3>
-                      </div>
+                {categories.map(({ key, title, Icon, skills, variant }) => (
+                  <motion.article
+                    key={key}
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.45 }}
+                    viewport={{ once: true }}
+                    className="rounded-2xl border border-white/10 bg-black/45 p-5 shadow-[0_0_25px_rgba(56,189,248,0.12)]"
+                  >
+                    <div className="mb-4 flex items-center gap-2">
+                      <Icon
+                        className={`h-5 w-5 ${rackTheme[variant].icon}`}
+                        aria-hidden
+                      />
+                      <h3 className="text-sm font-semibold text-white">
+                        {title}
+                      </h3>
+                    </div>
 
-                      <div className="space-y-3">
-                        {skills.map((skill, rackIndex) => {
-                          const SkillIcon = skill.icon;
-                          return (
+                    <div className="space-y-3">
+                      {skills.map((skill, rackIndex) => {
+                        const SkillIcon = skill.icon;
+                        return (
+                          <div
+                            key={`${key}-${skill.name}`}
+                            className={`group relative overflow-hidden rounded-xl border bg-zinc-950/85 px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 ${rackTheme[variant].rackBorder} ${rackTheme[variant].rackGlow}`}
+                          >
                             <div
-                              key={`${key}-${skill.name}`}
-                              className={`group relative overflow-hidden rounded-xl border bg-zinc-950/85 px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 ${rackTheme[variant].rackBorder} ${rackTheme[variant].rackGlow}`}
+                              aria-hidden
+                              className="absolute inset-y-1 left-1 w-2 rounded-full border border-white/10 bg-zinc-900/90"
                             >
-                              <div
-                                aria-hidden
-                                className="absolute inset-y-1 left-1 w-2 rounded-full border border-white/10 bg-zinc-900/90"
-                              >
-                                <div className="mt-1 space-y-1">
-                                  <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
-                                  <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
-                                  <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
-                                </div>
+                              <div className="mt-1 space-y-1">
+                                <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
+                                <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
+                                <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
                               </div>
-                              <div
-                                aria-hidden
-                                className="absolute inset-y-1 right-1 w-2 rounded-full border border-white/10 bg-zinc-900/90"
-                              >
-                                <div className="mt-1 space-y-1">
-                                  <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
-                                  <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
-                                  <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
-                                </div>
+                            </div>
+                            <div
+                              aria-hidden
+                              className="absolute inset-y-1 right-1 w-2 rounded-full border border-white/10 bg-zinc-900/90"
+                            >
+                              <div className="mt-1 space-y-1">
+                                <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
+                                <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
+                                <span className="mx-auto block h-0.5 w-0.5 rounded-full bg-zinc-600" />
                               </div>
+                            </div>
 
-                              <div className="mb-2 flex items-center justify-between pl-3 pr-3">
-                                <div className="flex items-center gap-2">
-                                  <SkillIcon
-                                    className={`h-5 w-5 ${rackTheme[variant].icon}`}
-                                  />
-                                  <span className="text-[13px] font-medium text-zinc-100">
-                                    {skill.name}
-                                  </span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <span
-                                    className={`h-2 w-2 rounded-full transition-transform duration-300 group-hover:scale-125 ${rackTheme[variant].led}`}
-                                    aria-hidden
-                                  />
-                                </div>
-                              </div>
-
-                              <div
-                                aria-hidden
-                                className="mb-2 ml-3 mr-3 flex gap-1 opacity-70"
-                              >
-                                <span className="h-0.5 flex-1 rounded-full bg-zinc-700" />
-                                <span className="h-0.5 flex-1 rounded-full bg-zinc-700" />
-                                <span className="h-0.5 flex-1 rounded-full bg-zinc-700" />
-                              </div>
-
-                              <div className="ml-3 mr-3 flex items-center gap-2">
-                                <div className="h-1.5 flex-1 rounded-full bg-zinc-800/90">
-                                  <div
-                                    className={`h-full rounded-full bg-gradient-to-r transition-all duration-500 group-hover:brightness-125 ${rackTheme[variant].progress}`}
-                                    style={{ width: `${skill.level}%` }}
-                                    aria-hidden
-                                  />
-                                </div>
-                                <span className="min-w-10 text-right text-[11px] font-semibold text-zinc-300">
-                                  {skill.level}%
+                            <div className="mb-2 flex items-center justify-between pl-3 pr-3">
+                              <div className="flex items-center gap-2">
+                                <SkillIcon
+                                  className={`h-5 w-5 ${rackTheme[variant].icon}`}
+                                />
+                                <span className="text-[13px] font-medium text-zinc-100">
+                                  {skill.name}
                                 </span>
                               </div>
-
-                              <div
-                                aria-hidden
-                                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                              >
-                                <div
-                                  className={`absolute inset-x-8 bottom-0 h-px bg-gradient-to-r ${rackTheme[variant].progress}`}
+                              <div className="flex items-center gap-2">
+                                <span
+                                  className={`h-2 w-2 rounded-full transition-transform duration-300 group-hover:scale-125 ${rackTheme[variant].led}`}
+                                  aria-hidden
                                 />
                               </div>
                             </div>
-                          );
-                        })}
-                      </div>
-                    </motion.article>
-                  ),
-                )}
+
+                            <div
+                              aria-hidden
+                              className="mb-2 ml-3 mr-3 flex gap-1 opacity-70"
+                            >
+                              <span className="h-0.5 flex-1 rounded-full bg-zinc-700" />
+                              <span className="h-0.5 flex-1 rounded-full bg-zinc-700" />
+                              <span className="h-0.5 flex-1 rounded-full bg-zinc-700" />
+                            </div>
+
+                            <div className="ml-3 mr-3 flex items-center gap-2">
+                              <div className="h-1.5 flex-1 rounded-full bg-zinc-800/90">
+                                <div
+                                  className={`h-full rounded-full bg-linear-to-r transition-all duration-500 group-hover:brightness-125 ${rackTheme[variant].progress}`}
+                                  style={{ width: `${skill.level}%` }}
+                                  aria-hidden
+                                />
+                              </div>
+                              <span className="min-w-10 text-right text-[11px] font-semibold text-zinc-300">
+                                {skill.level}%
+                              </span>
+                            </div>
+
+                            <div
+                              aria-hidden
+                              className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                            >
+                              <div
+                                className={`absolute inset-x-8 bottom-0 h-px bg-linear-to-r ${rackTheme[variant].progress}`}
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </motion.article>
+                ))}
               </div>
             </div>
           </motion.div>

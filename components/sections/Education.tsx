@@ -36,7 +36,7 @@ export default function Education() {
           className="absolute bottom-10 left-7 top-4 z-0 md:left-1/2 md:-translate-x-1/2"
         >
           <motion.div
-            className="h-full w-[2px] bg-gradient-to-b from-cyan-500/0 via-cyan-300/45 to-cyan-500/0"
+            className="h-full w-0.5 bg-linear-to-b from-cyan-500/0 via-cyan-300/45 to-cyan-500/0"
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
             viewport={{ once: true, margin: "-48px" }}
@@ -60,7 +60,10 @@ export default function Education() {
                 <div className="relative hidden items-start md:grid md:grid-cols-[1fr_auto_1fr] md:gap-8">
                   <div className="flex justify-end pr-8">
                     {side === "left" ? (
-                      <motion.article {...cardMotion} className="w-full max-w-xl">
+                      <motion.article
+                        {...cardMotion}
+                        className="w-full max-w-xl"
+                      >
                         <EducationCard {...entry} />
                       </motion.article>
                     ) : (
@@ -81,7 +84,10 @@ export default function Education() {
 
                   <div className="flex justify-start pl-8">
                     {side === "right" ? (
-                      <motion.article {...cardMotion} className="w-full max-w-xl">
+                      <motion.article
+                        {...cardMotion}
+                        className="w-full max-w-xl"
+                      >
                         <EducationCard {...entry} />
                       </motion.article>
                     ) : (
@@ -94,7 +100,7 @@ export default function Education() {
                   </div>
                 </div>
 
-                <div className="relative flex gap-4 pl-[1px] md:hidden">
+                <div className="relative flex gap-4 pl-px md:hidden">
                   <div className="flex shrink-0 flex-col items-center pt-1">
                     <p className="mb-2 text-lg font-bold tracking-tight text-cyan-200">
                       {entry.years}
