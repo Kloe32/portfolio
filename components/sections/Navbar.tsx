@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Download, Menu, Moon, Sun, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -89,9 +89,11 @@ export default function Navbar() {
             <a
               href="/resume.pdf"
               download
-              className="hidden items-center rounded-lg border border-primary/60 bg-primary px-3.5 py-2 text-xs font-semibold text-primary-foreground shadow-[0_0_14px_rgba(81,162,255,0.45)] transition-all duration-200 hover:scale-[1.02] hover:brightness-110 md:inline-flex"
+              className="hidden items-center gap-1.5 rounded-lg border border-primary/60 bg-primary px-3.5 py-2 text-xs font-semibold text-primary-foreground shadow-[0_0_14px_rgba(81,162,255,0.45)] transition-all duration-200 hover:scale-[1.02] hover:brightness-110 md:inline-flex"
+              aria-label="Download resume"
             >
-              Download Resume
+              Resume
+              <Download className="h-3.5 w-3.5 shrink-0 opacity-95" aria-hidden />
             </a>
             <button
               onClick={() => applyTheme(!isDark)}
@@ -119,9 +121,12 @@ export default function Navbar() {
                 <a
                   href="/resume.pdf"
                   download
-                  className="relative z-10 block rounded-lg border border-primary/60 bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground shadow-[0_0_14px_rgba(81,162,255,0.45)] transition-all duration-200 hover:brightness-110"
+                  onClick={() => setMenuOpen(false)}
+                  className="relative z-10 flex items-center justify-center gap-2 rounded-lg border border-primary/60 bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground shadow-[0_0_14px_rgba(81,162,255,0.45)] transition-all duration-200 hover:brightness-110"
+                  aria-label="Download resume"
                 >
-                  Download Resume
+                  Resume
+                  <Download className="h-4 w-4 shrink-0 opacity-95" aria-hidden />
                 </a>
               </li>
               {navLinks.map((link) => (

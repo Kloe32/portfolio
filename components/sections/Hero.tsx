@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight, Download } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, Mail } from "lucide-react";
 import { AuroraText } from "@/components/ui/aurora-text";
 import { TypingAnimation } from "../ui/typing-animation";
 import { ShimmerButton } from "../ui/shimmer-button";
@@ -83,17 +84,16 @@ export default function Hero() {
                   <ArrowUpRight className="h-4 w-4" />
                 </span>
               </ShimmerButton>
-              <a
-                href="/resume.pdf"
-                download
-                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-cyan-400/40 bg-cyan-400/10 px-5 py-2.5 text-sm font-semibold text-cyan-100 shadow-[0_0_20px_rgba(56,189,248,0.18)] transition-all duration-300 hover:border-cyan-300/70 hover:bg-cyan-400/20 hover:text-white lg:text-base"
+              <Link
+                href="#contact"
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-primary/40 bg-primary/10 px-5 py-2.5 text-sm font-semibold text-foreground shadow-[0_0_20px_rgba(81,162,255,0.18)] transition-all duration-300 hover:border-primary/60 hover:bg-primary/15 hover:text-foreground lg:text-base"
               >
-                <span className="absolute inset-0 -z-10 bg-linear-to-r from-cyan-500/10 via-blue-500/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="absolute inset-0 -z-10 bg-linear-to-r from-primary/10 via-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <span className="flex items-center gap-2">
-                  Download Resume
-                  <Download className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
+                  Contact me
+                  <Mail className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
 

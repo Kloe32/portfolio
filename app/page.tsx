@@ -33,12 +33,14 @@ export default function Home() {
         <About />
       </FadeInSection>
 
-      <FadeInSection delay={0.2}>
-        <Skills />
-      </FadeInSection>
+
 
       <FadeInSection delay={0.3}>
         <FeaturedProjects />
+      </FadeInSection>
+      
+      <FadeInSection delay={0.2}>
+        <Skills />
       </FadeInSection>
 
       <FadeInSection delay={0.4}>
